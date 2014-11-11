@@ -81,4 +81,37 @@ describe Finance_Engine::Time_Value_Money do
 		a = Finance_Engine::Time_Value_Money.find_pv(hash)
 		expect(a).to be_within(1).of(1000)
 	end
+
+	it "Should be able to calculate the payment given all else." do 
+		hash = {fv: 0, n: 4, pv:-100, i: 0.1}
+		a = Finance_Engine::Time_Value_Money.find_pmt(hash)
+		expect(a).to be_within(1).of(-31)
+		hash = {fv: 1000, n: 10, pv:0, i: 0.1}
+		a = Finance_Engine::Time_Value_Money.find_pmt(hash)
+		expect(a).to be_within(1).of(-62.75)
+		hash = {fv: -1000, n: 10, pv:1000, i: 0.1}
+		a = Finance_Engine::Time_Value_Money.find_pmt(hash)
+		expect(a).to be_within(1).of(225.75)
+	end
+
+	it "Should be able to calculate the rate given all else." do 
+		hash = {fv: 200, n: 5, pv:-200, pmt: 10}
+		a = Finance_Engine::Time_Value_Money.find_n(hash)
+		expect(a).to eq(0.05)
+	end
+
+	xit "Should be able to calculate the N given pv, pmt, r, and fv." do 
+		puts 'hi'
+		hash = {fv: 200, r: 0.10, pv:-50, pmt: 100}
+		a = Finance_Engine::Time_Value_Money.find_n(hash)
+		puts 'hi'
+		expect(a).to eq(1)
+		# puts 'hi'
+		# hash = {fv: 1000, r: 0.10, pv:500, pmt: 100}
+		# a = Finance_Engine::Time_Value_Money.find_n(hash)
+		# expect(a).to be_within(1).of(5)
+		# hash = {fv: 1000, r: 0.10, n:5, pmt: 100}
+		# a = Finance_Engine::Time_Value_Money.find_pv(hash)
+		# expect(a).to be_within(1).of(1000)
+	end
 end
