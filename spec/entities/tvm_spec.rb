@@ -25,9 +25,9 @@ describe Finance_Engine::Time_Value_Money do
 		hash = {cash_flow: 100, time: 2, rate: 0.10}
 		a = Finance_Engine::Time_Value_Money.future_value_cash_flow(hash)
 		expect(a.round(4)).to be_within(1).of(121.0)
-		hash = {cash_flow: 100, time: 1, rate: 0.1}
+		hash = {cash_flow: 1000, time: 5, rate: 0.1}
 		a = Finance_Engine::Time_Value_Money.future_value_cash_flow(hash)
-		expect(a.round(4)).to eq(110.0)
+		expect(a).to be_within(1).of(1610.0)
 	end	
 
 	it "Should be able to calculate the future value of a series of cash flows." do 
@@ -40,5 +40,33 @@ describe Finance_Engine::Time_Value_Money do
 		year1 = [1]; cashflow1 = [100]; rate1 = [0.1]
 		b = Finance_Engine::Time_Value_Money.future_value_cash_flows(year1, cashflow1, rate1,2)
 		expect(b.round(4)).to be_within(1).of(110)
+	end
+
+	it "Should be able to calculate the PV of an Annuity." do 
+		a = Finance_Engine::Time_Value_Money.pv_annuity(100, 1, 0.1)
+		expect(a).to be_within(1).of(90)
+		a = Finance_Engine::Time_Value_Money.pv_annuity(100, 5, 0.1)
+		expect(a).to be_within(1).of(379)
+	end
+
+	it "Should be able to calculate the FV of an Annuity." do 
+		a = Finance_Engine::Time_Value_Money.fv_annuity(100, 1, 0.1)
+		expect(a).to be_within(1).of(100)
+		a = Finance_Engine::Time_Value_Money.fv_annuity(100, 2, 0.1)
+		expect(a).to be_within(1).of(210)
+		a = Finance_Engine::Time_Value_Money.fv_annuity(100, 5, 0.1)
+		expect(a).to be_within(1).of(610)
+	end
+
+	it "Should be able to calculate the FV given n, t, r, and pv." do 
+		hash = {pv: 1000,r: 0.10, n:5, pmt: 100}
+		a = Finance_Engine::Time_Value_Money.find_fv(hash)
+		expect(a).to be_within(1).of(2221)
+		hash = {pv: 0,r: 0.10, n:5, pmt: 100}
+		a = Finance_Engine::Time_Value_Money.find_fv(hash)
+		expect(a).to be_within(1).of(610)
+		hash = {pv: 1000,r: 0.10, n:5, pmt: 0}
+		a = Finance_Engine::Time_Value_Money.find_fv(hash)
+		expect(a).to be_within(1).of(1610)
 	end
 end
