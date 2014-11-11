@@ -6,15 +6,16 @@ module Finance_Engine
 
 		def self.find_fv(hash)
 			pv = future_value_cash_flow({cash_flow: hash[:pv], time: hash[:n], rate: hash[:r]})
-			pmt = pv_annuity(hash[:pmt], hash[:n], hash[:r])
-			fv = pv + pmt
+			pmt = fv_annuity(hash[:pmt], hash[:n], hash[:r])
+			fv = pv.to_f + pmt.to_f
 			return fv
 		end
 
 		def self.find_pv(hash)
-			fv = 0
-			pmt = 0
-			pv
+			fv = present_value_cash_flow({cash_flow: hash[:fv], time: hash[:n], rate: hash[:r]})
+			pmt = pv_annuity(hash[:pmt], hash[:n], hash[:r])
+			pv = pmt + fv
+			return pv
 		end
 
 		def self.find_irr(hash)
@@ -29,7 +30,7 @@ module Finance_Engine
 		def self.pv_annuity(pmt,time,rate)
 			pv = 0
 			1.upto(time) do |x|
-				pv += pmt/((1+rate)**x)
+				pv += pmt / ((1+rate)**x)
 			end
 			return pv
 		end

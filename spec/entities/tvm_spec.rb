@@ -69,4 +69,16 @@ describe Finance_Engine::Time_Value_Money do
 		a = Finance_Engine::Time_Value_Money.find_fv(hash)
 		expect(a).to be_within(1).of(1610)
 	end
+
+	it "Should be able to calculate the PV given n, t, r, and fv." do 
+		hash = {fv: 1000, r: 0.10, n:5, pmt: 0}
+		a = Finance_Engine::Time_Value_Money.find_pv(hash)
+		expect(a).to be_within(1).of(620)
+		hash = {fv: 0, r: 0.10, n:5, pmt: 100}
+		a = Finance_Engine::Time_Value_Money.find_pv(hash)
+		expect(a).to be_within(1).of(380)
+		hash = {fv: 1000, r: 0.10, n:5, pmt: 100}
+		a = Finance_Engine::Time_Value_Money.find_pv(hash)
+		expect(a).to be_within(1).of(1000)
+	end
 end
