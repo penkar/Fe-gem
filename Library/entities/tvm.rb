@@ -1,7 +1,12 @@
 module Finance_Engine
 	class Time_Value_Money
-		def find_missing_variable(pv=nil, r=nil, fv=nil, n=nil, pmt=nil)
-			attributes = {pv:pv, r:r, fv:fv, n:n, pmt:pmt}
+		def self.find_missing_variable(hash)
+			# attributes = {pv: present value, r: internal rate of return, fv: future value, n: number of payment periods, pmt: payment amount}
+			return find_fv(hash) if hash[:fv].nil?
+			return find_pv(hash) if hash[:pv].nil?
+			return find_r(hash) if hash[:r].nil?
+			return find_n(hash) if hash[:n].nil?
+			return find_pmt(hash) if hash[:pmt].nil?
 		end
 
 		def self.find_fv(hash)
@@ -19,8 +24,8 @@ module Finance_Engine
 		end
 
 		def self.find_r(hash)
-			# r = (hash[:fv]/hash[:pv])**(1/hash[:n])-1
-			# return r
+			r = (hash[:fv]/hash[:pv])**((1/hash[:n])-1).to_f
+			return r/100
 		end
 
 		def self.find_n(hash)
@@ -35,7 +40,8 @@ module Finance_Engine
 		def self.find_pmt(hash)
 			 # r[(PV - FV)/((1 + r)^n - 1) + PV] 
 			# binding.pry
-			pmt = hash[:i] * ((hash[:pv] - hash[:fv])/((1+hash[:i])**(hash[:n])-1) + hash[:pv])
+			pmt = hash[:r] * ((hash[:pv] - hash[:fv])/((1+hash[:r])**(hash[:n])-1) + hash[:pv])
+			return pmt
 		end
 
 		#Calculates the present value of an annuity. Both formulas below, non-loop in use.
