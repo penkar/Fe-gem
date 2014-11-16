@@ -19,8 +19,8 @@ module Finance_Engine
 			msg += "Risk free rate is missing. " if @risk_free_rate.nil?
 			msg += "Volatility rate is missing. " if @volatility.nil?
 			inputs =  "{price: (Dollar Value), strike: (Dollar Value), time: (In Years), riskfree: (RF rate in decimal form (0.05)), volatility: (Volatility Percentage in decimal form (0.20))}"
+			# puts inputs if msg.length > 0
 			puts msg if msg.length > 0
-			puts inputs if msg.length > 0
 		end
 
 		def build_options
