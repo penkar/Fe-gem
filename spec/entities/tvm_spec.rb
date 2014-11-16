@@ -91,7 +91,6 @@ describe Finance_Engine::Time_Value_Money do
 		expect(a).to be_within(1).of(-62.75)
 		hash = {fv: -1000, n: 10, pv:1000, r: 0.1}
 		a = Finance_Engine::Time_Value_Money.find_pmt(hash)
-		puts a
 		expect(a).to be_within(1).of(225.75)
 	end
 
@@ -113,11 +112,10 @@ describe Finance_Engine::Time_Value_Money do
 		b = Finance_Engine::Time_Value_Money.find_missing_variable({pv: 1000,r: 0.10, n:5, pmt: 100})
 		expect(b).to be_within(1).of(2221)
 		c = Finance_Engine::Time_Value_Money.find_missing_variable({fv: -1000, n: 10, pv:1000, r: 0.1})
-		puts c
 		expect(c).to be_within(1).of(225.75)
-		# d = Finance_Engine::Time_Value_Money.find_missing_variable(pv=nil, r=nil, fv=nil, n=nil, pmt=nil)
+		# d = Finance_Engine::Time_Value_Money.find_missing_variable({})
 
-		# e = Finance_Engine::Time_Value_Money.find_missing_variable(pv=nil, r=nil, fv=nil, n=nil, pmt=nil)
+		# e = Finance_Engine::Time_Value_Money.find_missing_variable({})
 
 	end
 end

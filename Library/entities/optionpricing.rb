@@ -11,8 +11,16 @@ module Finance_Engine
 			@distr_normal = Distribution::Normal::Ruby_
 		end
 
-		def inputs
-			puts "{price: ##, strike: ##, time: ##, riskfree:##, volatility: ##}"
+		def check_attr
+			msg = ''
+			msg += "Stock price is missing. " if @current_stock_price.nil?
+			msg += "Time period is missing. " if @time.nil?
+			msg += "Strike Price is missing. " if @strike_price.nil?
+			msg += "Risk free rate is missing. " if @risk_free_rate.nil?
+			msg += "Volatility rate is missing. " if @volatility.nil?
+			inputs =  "{price: (Dollar Value), strike: (Dollar Value), time: (In Years), riskfree: (RF rate in decimal form (0.05)), volatility: (Volatility Percentage in decimal form (0.20))}"
+			puts msg if msg.length > 0
+			# puts inputs if msg.length > 0
 		end
 
 		def build_options
