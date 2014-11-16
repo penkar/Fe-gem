@@ -7,5 +7,15 @@ module Finance_Engine
 		def self.calculate_effective_annual_rate(annual_yield, periods)
 			return ((annual_yield + 1)**(1/periods)-1)*periods
 		end
+
+		def self.calculate_EAY_payment(amt, rate, time, periods)
+			return amt * ((1+rate/periods)**(time))
+		end
+
+		# def self.calculate_EAR_payment(amt, rate, time, periods)
+		# 	return amt * ((1+rate)**(time/periods))
+		# end
+
+
 	end
 end
