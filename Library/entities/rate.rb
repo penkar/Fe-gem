@@ -5,6 +5,7 @@ module Finance_Engine
 		end
 
 		def self.calculate_effective_annual_rate(annual_yield, periods)
+			return ((annual_yield + 1)**(1/periods)-1)*periods
 		end
 	end
 end
