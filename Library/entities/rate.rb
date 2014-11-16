@@ -12,9 +12,9 @@ module Finance_Engine
 			return amt * ((1+rate/periods)**(time))
 		end
 
-		# def self.calculate_EAR_payment(amt, rate, time, periods)
-		# 	return amt * ((1+rate)**(time/periods))
-		# end
+		def self.calculate_EAR_payment(amt, rate, time, periods)
+			return amt * ((1+rate)**(time/periods))
+		end
 
 
 	end

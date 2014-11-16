@@ -15,4 +15,9 @@ describe Finance_Engine::Rate do
 		a = Finance_Engine::Rate.calculate_EAY_payment(1000,0.05,24,12)
 		expect(a).to be_within(0.05).of(1104.94)
 	end
+
+	it 'should be able to calculate a payment using EAR. $1000, 5%, over 2 years compounded monthly.' do
+		a = Finance_Engine::Rate.calculate_EAR_payment(1000,0.05,24,12)
+		expect(a).to be_within(0.05).of(1102.50)
+	end
 end
