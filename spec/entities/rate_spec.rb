@@ -20,4 +20,9 @@ describe Finance_Engine::Rate do
 		a = Finance_Engine::Rate.calculate_EAR_payment(1000,0.05,24,12)
 		expect(a).to be_within(0.05).of(1102.50)
 	end
+
+	it 'Should be able to calculate the difference between EAR and EAY in dollar amounts.' do
+		a = Finance_Engine::Rate.compare_EAR_EAY(1000,0.05,24,12)
+		expect(a).to be_within(0.05).of(2.44)
+	end
 end
