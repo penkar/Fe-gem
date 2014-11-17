@@ -1,5 +1,5 @@
 module Finance_Engine
-	class Rate
+	class EAY_EAR
 		def self.calculate_effective_annual_yield(annual_rate, periods)
 			(1+annual_rate/periods)**(periods)-1
 		end
