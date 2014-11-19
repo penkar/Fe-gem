@@ -9,7 +9,7 @@ describe Finance_Engine::Equity do
 
 	it 'Should be able to calculate dividend given value, growth and rate of return.' do 
 		hash = {value: 3333.33, rate: 0.05, growth: 0.02}
-		a = Finance_Engine::Equity.ggm_growth(hash)
+		a = Finance_Engine::Equity.ggm_dividend(hash)
 		expect(a).to be_within(0.005).of(100)
 	end
 
@@ -17,5 +17,11 @@ describe Finance_Engine::Equity do
 		hash = {value: 3333.33, dividend: 100, growth: 0.02}
 		a = Finance_Engine::Equity.ggm_rate(hash)
 		expect(a).to be_within(0.005).of(0.05)
+	end
+
+	it 'Should be able to calculate growth given value, rate and dividend of return.' do 
+		hash = {value: 3333.33, dividend: 100, rate: 0.05}
+		a = Finance_Engine::Equity.ggm_growth(hash)
+		expect(a).to be_within(0.005).of(0.02)
 	end
 end
