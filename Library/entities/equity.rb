@@ -1,7 +1,7 @@
 module Finance_Engine
 	class Equity
-		def gordon_growth_model(hash)
-			
+		def self.gordon_growth_model(hash)
+			ggm_value(hash) if hash[:value].nil?
 		end
 
 		def self.ggm_value(hash)

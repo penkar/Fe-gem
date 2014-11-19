@@ -24,4 +24,10 @@ describe Finance_Engine::Equity do
 		a = Finance_Engine::Equity.ggm_growth(hash)
 		expect(a).to be_within(0.005).of(0.02)
 	end
+
+	it 'Should be able to calculate value, rate, div or growth depending on what is missing.' do 
+		hash = {dividend: 100, rate: 0.05, growth: 0.02}
+		a = Finance_Engine::Equity.gordon_growth_model(hash)
+		expect(a).to be_within(0.005).of(3333.333)
+	end
 end
