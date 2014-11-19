@@ -26,8 +26,17 @@ describe Finance_Engine::Equity do
 	end
 
 	it 'Should be able to calculate value, rate, div or growth depending on what is missing.' do 
-		hash = {dividend: 100, rate: 0.05, growth: 0.02}
+			hash = {dividend: 100, rate: 0.05, growth: 0.02}
 		a = Finance_Engine::Equity.gordon_growth_model(hash)
 		expect(a).to be_within(0.005).of(3333.333)
+			hash = {value: 3333.33, rate: 0.05, growth: 0.02}
+		b = Finance_Engine::Equity.gordon_growth_model(hash)
+		expect(b).to be_within(0.005).of(100)
+			hash = {value: 3333.33, dividend: 100, growth: 0.02}
+		c = Finance_Engine::Equity.gordon_growth_model(hash)
+		expect(c).to be_within(0.005).of(0.05)
+			hash = {value: 3333.33, dividend: 100, rate: 0.05}
+		d = Finance_Engine::Equity.gordon_growth_model(hash)
+		expect(d).to be_within(0.005).of(0.02)
 	end
 end
