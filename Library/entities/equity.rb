@@ -9,7 +9,7 @@ module Finance_Engine
 		end
 
 		def self.ggm_growth(hash)
-			
+			hash[:value] * (hash[:rate] - hash[:growth])
 		end
 
 	end
