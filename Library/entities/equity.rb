@@ -12,5 +12,9 @@ module Finance_Engine
 			hash[:value] * (hash[:rate] - hash[:growth])
 		end
 
+		def self.ggm_rate(hash)
+			hash[:growth] + (hash[:dividend] / hash[:value])
+		end
+
 	end
 end
