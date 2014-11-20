@@ -66,9 +66,9 @@ describe FinanceEngine::EAY_EAR do
 		expect(a).to be_within(0.05).of(1257.31)
 	end
 
-	xit 'Should be able to calculate the difference between EAR and continuous series of payment in dollar amounts.' do
-		a = FinanceEngine::EAY_EAR.compare_EAR_Continuous_series_payment(1000,0.05,24,12)
-		expect(a).to be_within(0.05).of(2.67)
+	it 'Should be able to calculate the difference between EAY and continuous series of payment in dollar amounts.' do
+		a = FinanceEngine::EAY_EAR.compare_EAY_Continuous_series_payment(1000,0.05,24,12)
+		expect(a).to be_within(0.05).of(1227.73)
 	end	
 
 end
