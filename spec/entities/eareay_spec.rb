@@ -51,4 +51,9 @@ describe FinanceEngine::EAY_EAR do
 		expect(a).to be_within(0.05).of(25290.86)
 	end
 
+	it 'Should be able to calculate the pv of a series of payments using Continuous Compounding.' do
+		a = FinanceEngine::EAY_EAR.calculate_EAY_series(1000,0.05,24,12)
+		expect(a).to be_within(0.05).of(25290.86)
+	end
+
 end

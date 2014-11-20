@@ -21,16 +21,29 @@ Or install it yourself as:
 ## Usage
 
 At the moment there are only five limited modules. Here we will try to demonstrate the basic argument inputs, it is advisable to check the tests.
+
 1) FA = FinanceEngine::Annuity
+
 	FA.present_value_perpetuity(annuity payment in dollars, rate of return, growth rate) - Will return the present value of a perpetuity.
+
+
 	FA.present_value_annuity(annuity payment in dollars, rate of return, n periods in payment, growth rate) - Will return the present value of an annuity with n periods remaining.
 
 
 2) FEE = FinanceEngine::EAY_EAR
+
 	FEE.calculate_effective_annual_yield(annual interest rate, compounding periods) - returns the effective annual yield given the effective annual rate and compounding periods.
+
+
 	FEE.calculate_effective_annual_rate(effective annual yield, compounding periods) - returns the annual rate of return given the effective annual yeld and compounding periods.
+
+
 	FEE.calculate_EAY_payment(payment amount, effecive annual rate, periods compounded, periods per year) - Calculates the dollar value of a payment in the future with compounding. 
-	FEE.calculate_EAR_payment(payment amount, effecive annual rate, periods compounded, periods per year) - Calculates the dollar value of a payment in the future without compounding. 
+
+
+	FEE.calculate_EAR_payment(payment amount, effecive annual rate, periods compounded, periods per year) - Calculates the dollar value of a payment in the future without compounding.
+
+ 
 	FEE.compare_EAR_EAY(payment amount, effecive annual rate, periods compounded, periods per year) - Calculates the dollar value difference between a payment calculated with effective yield and without.
 
 
