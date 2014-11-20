@@ -29,7 +29,7 @@ module FinanceEngine
 		end
 
 		def self.compare_EAY_Continuous(amt,rate,time,periods)
-			continuous_compounding(amt,rate,time) - calculate_EAY_payment(amt, rate, time, periods)
+			continuous_compounding(amt,rate,time/periods) - calculate_EAY_payment(amt, rate, time, periods)
 		end
 
 
