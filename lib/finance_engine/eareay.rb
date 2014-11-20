@@ -38,5 +38,12 @@ module FinanceEngine
 			sum
 		end
 
+		def self.calculate_EAY_series(amt, rate, time, periods)
+			sum = 0
+			1.upto(time) {|x| sum += calculate_EAY_payment(amt, rate, x, periods)}
+			sum
+		end
+
+
 	end
 end
