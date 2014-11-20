@@ -13,7 +13,7 @@ module FinanceEngine
 		end
 
 		def self.calculate_EAR_payment(amt, rate, time, periods)
-			amt * ((1+rate)**(time/periods))
+			amt * ((1+rate)**(time.to_f/periods))
 		end
 
 		def self.continuous_compounding(amt,rate,time)
@@ -31,7 +31,12 @@ module FinanceEngine
 		def self.compare_EAY_Continuous_single_payment(amt,rate,time,periods)
 			continuous_compounding(amt,rate,time/periods) - calculate_EAY_payment(amt, rate, time, periods)
 		end
-
+		
+		def self.calculate_EAR_series(amt, rate, time, periods)
+			sum = 0
+			1.upto(time) {|x| sum += calculate_EAR_payment(amt, rate, x, periods)}
+			sum
+		end
 
 	end
 end
