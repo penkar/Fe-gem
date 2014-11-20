@@ -27,17 +27,17 @@ describe FinanceEngine::EAY_EAR do
 	end
 
 	it 'Should be able to calculate the difference between EAR and EAY in dollar amounts.' do
-		a = FinanceEngine::EAY_EAR.compare_EAR_EAY(1000,0.05,24,12)
+		a = FinanceEngine::EAY_EAR.compare_EAR_EAY_single_payment(1000,0.05,24,12)
 		expect(a).to be_within(0.05).of(2.44)
 	end
 
 	it 'Should be able to calculate the difference between EAY and continuous in dollar amounts.' do
-		a = FinanceEngine::EAY_EAR.compare_EAY_Continuous(1000,0.05,24,12)
+		a = FinanceEngine::EAY_EAR.compare_EAY_Continuous_single_payment(1000,0.05,24,12)
 		expect(a).to be_within(0.05).of(0.23)
 	end
 
 	it 'Should be able to calculate the difference between EAR and continuous in dollar amounts.' do
-		a = FinanceEngine::EAY_EAR.compare_EAR_Continuous(1000,0.05,24,12)
+		a = FinanceEngine::EAY_EAR.compare_EAR_Continuous_single_payment(1000,0.05,24,12)
 		expect(a).to be_within(0.05).of(2.67)
 	end	
 

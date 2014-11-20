@@ -20,15 +20,15 @@ module FinanceEngine
 			amt * (Math::E**(rate*time))
 		end
 
-		def self.compare_EAR_EAY(amt,rate,time,periods)
+		def self.compare_EAR_EAY_single_payment(amt,rate,time,periods)
 			calculate_EAY_payment(amt, rate, time, periods) - calculate_EAR_payment(amt, rate, time, periods)
 		end
 
-		def self.compare_EAR_Continuous(amt,rate,time,periods)
+		def self.compare_EAR_Continuous_single_payment(amt,rate,time,periods)
 			continuous_compounding(amt,rate,time/periods) - calculate_EAR_payment(amt, rate, time, periods)
 		end
 
-		def self.compare_EAY_Continuous(amt,rate,time,periods)
+		def self.compare_EAY_Continuous_single_payment(amt,rate,time,periods)
 			continuous_compounding(amt,rate,time/periods) - calculate_EAY_payment(amt, rate, time, periods)
 		end
 
