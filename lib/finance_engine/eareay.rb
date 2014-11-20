@@ -20,5 +20,9 @@ module FinanceEngine
 			amt * (((1+rate/periods)**(time)) - ((1+rate)**(time/periods)))
 		end
 
+		def self.continuous_compounding(amt,rate,time)
+			amt * (Math::E**(rate*time))
+		end
+
 	end
 end

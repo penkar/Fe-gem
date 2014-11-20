@@ -25,4 +25,10 @@ describe FinanceEngine::EAY_EAR do
 		a = FinanceEngine::EAY_EAR.compare_EAR_EAY(1000,0.05,24,12)
 		expect(a).to be_within(0.05).of(2.44)
 	end
+
+	it 'Should be able to calculate a payment assuming continuous compounding.' do
+		a = FinanceEngine::EAY_EAR.continuous_compounding(1000,0.05,1)
+		expect(a).to be_within(0.05).of(1051.27)
+	end
+
 end
