@@ -50,5 +50,17 @@ module FinanceEngine
 			sum
 		end
 
+		def self.compare_EAR_EAY_series_payment(amt,rate,time,periods)
+			calculate_EAY_series(amt, rate, time, periods) - calculate_EAR_series(amt, rate, time, periods)
+		end
+
+		def self.compare_EAR_Continuous_series_payment(amt,rate,time,periods)
+			calculate_CC_series(amt, rate, time, periods) - calculate_EAR_series(amt, rate, time, periods)
+		end
+
+		def self.compare_EAY_Continuous_series_payment(amt,rate,time,periods)
+			calculate_CC_series(amt, rate, time, periods) - calculate_EAY_series(amt, rate, time, periods)
+		end
+
 	end
 end
