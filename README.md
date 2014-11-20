@@ -34,7 +34,13 @@ At the moment there are only five limited modules. Here we will try to demonstra
 	FEE.compare_EAR_EAY(payment amount, effecive annual rate, periods compounded, periods per year) - Calculates the dollar value difference between a payment calculated with effective yield and without.
 
 
+3) FE = FinanceEngine::Equity
 
+
+4) FBS = FinanceEngine::Black_Scholes
+
+
+5) FTVM = FinanceEngine::Time_Value_Money
 
 
 

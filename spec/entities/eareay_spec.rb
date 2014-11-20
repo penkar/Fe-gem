@@ -26,9 +26,19 @@ describe FinanceEngine::EAY_EAR do
 		expect(a).to be_within(0.05).of(2.44)
 	end
 
+	xit 'Should be able to calculate the difference between EAY and continuous in dollar amounts.' do
+		a = FinanceEngine::EAY_EAR.compare_EAY_Continuous(1000,0.05,24,12)
+		expect(a).to be_within(0.05).of(2.44)
+	end
+
+	xit 'Should be able to calculate the difference between EAR and continuous in dollar amounts.' do
+		a = FinanceEngine::EAY_EAR.compare_EAR_Continuous(1000,0.05,24,12)
+		expect(a).to be_within(0.05).of(2.44)
+	end	
+
 	it 'Should be able to calculate a payment assuming continuous compounding.' do
-		a = FinanceEngine::EAY_EAR.continuous_compounding(1000,0.05,1)
-		expect(a).to be_within(0.05).of(1051.27)
+		a = FinanceEngine::EAY_EAR.continuous_compounding(1000,0.05,2)
+		expect(a).to be_within(0.05).of(1105.17)
 	end
 
 end
