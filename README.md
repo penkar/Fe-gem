@@ -50,7 +50,9 @@ At the moment there are only five limited modules. Here we will try to demonstra
 
 5) FTVM = FinanceEngine::Time_Value_Money
 
-	FTVM.
+	FTVM.present_value_cash_flows(years, cashflows, rates) - Years, cashflows and rates are all arrays matching in length. This method will return the present value of a series of cash flows when given the time, amount and effective interest rates.
+
+	FTVM.future_value_cash_flows(years, cashflows, rates) - Years, cashflows and rates are all arrays matching in length. This method will return the future value of a series of cash flows when given the time, amount and effective interest rates.
 
 
 
