@@ -23,18 +23,18 @@ module FinanceEngine
 			return pv
 		end
 
-		def self.find_r(hash)
-			r = (hash[:fv]/hash[:pv])**((1/hash[:n])-1).to_f
-			return r/100
-		end
+		# def self.find_r(hash)
+		# 	r = (hash[:fv]/hash[:pv])**((1/hash[:n])-1).to_f
+		# 	return r/100
+		# end
 
-		def self.find_n(hash)
-			# n = Math.log(1 - (hash[:fv]*hash[:r]/ hash[:pmt])) / Math.log(1+ hash[:r])
-			# n += Math.log(hash[:fv]/hash[:pv]) / Math.log(1+ hash[:r])
-			n = ((( hash[:pmt] *(1+hash[:r]) + -hash[:fv]/hash[:r]) / (hash[:pv] * hash[:r] + hash[:pmt]*(1+ hash[:r])))**(0.5))/((1+hash[:r])**(0.5))*100
+		# def self.find_n(hash)
+		# 	# n = Math.log(1 - (hash[:fv]*hash[:r]/ hash[:pmt])) / Math.log(1+ hash[:r])
+		# 	# n += Math.log(hash[:fv]/hash[:pv]) / Math.log(1+ hash[:r])
+		# 	n = ((( hash[:pmt] *(1+hash[:r]) + -hash[:fv]/hash[:r]) / (hash[:pv] * hash[:r] + hash[:pmt]*(1+ hash[:r])))**(0.5))/((1+hash[:r])**(0.5))*100
 
-			return n.round(4)
-		end
+		# 	return n.round(4)
+		# end
 
 		#Calculates the annuity payment amount given the present value, future value, interest rate and amount of periods.
 		def self.find_pmt(hash)
