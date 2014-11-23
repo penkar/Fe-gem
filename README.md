@@ -44,6 +44,8 @@ At the moment there are only five limited modules. Here we will try to demonstra
 
 	FE.gordon_growth_model({ :rate => 0.05, :dividend => 100, :growth => 0.02, :value => 3333.33 }) - Using 3 of the 4 input values the Gordon Growth Model method will calculate the 4th input. 
 
+	FE.gordon_growth_model({ :rate => 0.05, :dividend => 100, :growth => 0.02 }) - Will return a value of 3333.33.
+
 4) FBS = FinanceEngine::Black_Scholes
 
 	FBS.new({ :current_stock_price => 100, :time => 5, :strike_price => 95, :risk_free_rate => 0.05, :volatility => 0.25 }) - After initializing a new instance of Black_Scholes run the build options method. This will create and store the put call and price data on the instance of Black Scholes. This is different from the other modules in that it will store the variables in the instance.
@@ -65,3 +67,5 @@ At the moment there are only five limited modules. Here we will try to demonstra
 3. Commit your changes (`git commit -am 'Add some feature'`)
 4. Push to the branch (`git push origin my-new-feature`)
 5. Create a new Pull Request
+
+What would be useful? Methods in Time value of money to calculate the rate, and nper.
