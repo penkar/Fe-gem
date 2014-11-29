@@ -47,20 +47,12 @@ module FinanceEngine
 		#Calculates the present value of an annuity. Both formulas below, non-loop in use.
 		def self.pv_annuity(pmt,time,rate)
 			pv = pmt*(1-(1+rate)**-time)/rate
-			# pv = 0
-			# 1.upto(time) do |x|
-			# 	pv += pmt / ((1+rate)**x)
-			# end
 			return pv
 		end
 
 		#Calculates the future value of an annuity. Both formulas below, non-loop in use.
 		def self.fv_annuity(pmt,time,rate)
 			fv = pmt*((1+rate)**time -1)/rate
-			# fv = 0
-			# 1.upto(time) do |x|
-			# 	fv += pmt * ((1+rate)**(time-x))
-			# end
 			return fv
 		end
 			
