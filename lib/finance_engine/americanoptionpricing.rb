@@ -14,12 +14,14 @@ module FinanceEngine
 			
 		end
 
-		def up_factor
-			Math::E**(@vol*(0))
+		def up_factor(time)
+			Math::E**(@vol*(time/12.0)**(0.5))
 		end
-		def down_factor
-			Math::E**(-@vol*(0))
+
+		def down_factor(time)
+			Math::E**(-@vol*(time/12.0)**(0.5))
 		end
+		
 		def probability_increase_price(time)
 			0.5 * (1+(@rf / @vol - @vol/2) *(time/12.0)**(0.5))
 		end
