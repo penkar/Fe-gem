@@ -1,4 +1,5 @@
 require "finance_engine/version"
+require_relative 'finance_engine/americanoptionpricing.rb'
 require_relative 'finance_engine/optionpricing.rb'
 require_relative 'finance_engine/tvm.rb'
 require_relative 'finance_engine/eareay.rb'
