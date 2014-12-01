@@ -59,7 +59,7 @@ At the moment there are only five limited modules. Here we will try to demonstra
 6) AO = FinanceEngine::American_Options
 
 	AO.new(Price, Volatility, Risk Free Rate, Strike Price) - Initializes a new instance of the american options storing the price, volatility, rf rate and strike price.
-	AO.build(years to expiration, number of periods within that year to exercise options) - this method will build out a binary tree to calculate the current option prices based on the future stock value and strike price.
+	AO.build_american_options(years to expiration, number of periods within that year to exercise options) - this method will build out a binary tree to calculate the current option prices based on the future stock value and strike price.
 	AO.current_call_price - returns the calculated current call price.
 	AO.current_put_price - returns the calculated current put price.
 
