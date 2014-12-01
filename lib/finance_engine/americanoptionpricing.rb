@@ -61,5 +61,12 @@ module FinanceEngine
 		def probability_increase_price(time)
 			@probability = (Math::E**(time*@rf)-@down_factor)/(@up_factor - @down_factor)
 		end
+
+		def current_call_price
+			@tree['original_']['call']
+		end
+		def current_put_price
+			@tree['original_']['put']
+		end
 	end
 end

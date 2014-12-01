@@ -56,13 +56,19 @@ At the moment there are only five limited modules. Here we will try to demonstra
 
 	FTVM.future_value_cash_flows(years, cashflows, rates) - Years, cashflows and rates are all arrays matching in length. This method will return the future value of a series of cash flows when given the time, amount and effective interest rates.
 
+6) AO = FinanceEngine::American_Options
+
+	AO.new(Price, Volatility, Risk Free Rate, Strike Price) - Initializes a new instance of the american options storing the price, volatility, rf rate and strike price.
+	AO.build(years to expiration, number of periods within that year to exercise options) - this method will build out a binary tree to calculate the current option prices based on the future stock value and strike price.
+	AO.current_call_price - returns the calculated current call price.
+	AO.current_put_price - returns the calculated current put price.
 
 
 
 
 ## Contributing
 
-1. Fork it ( https://github.com/[my-github-username]/finance_engine/fork )
+1. Fork it ( https://github.com/penkar/finance_engine/fork )
 2. Create your feature branch (`git checkout -b my-new-feature`)
 3. Commit your changes (`git commit -am 'Add some feature'`)
 4. Push to the branch (`git push origin my-new-feature`)
