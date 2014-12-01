@@ -28,8 +28,8 @@ describe FinanceEngine::American_Options do
 
 	it 'Be able to create tree.' do
 		first = FinanceEngine::American_Options.new(32,0.2,0.10,35)
-		first.build_american_options(2,1)
-		puts first
+		first.build_american_options(2, 1)
+		p first
 		expect(first.tree['original_dd']['price']).to be_within(0.0005).of(21.450)
 		expect(first.tree['original_uu']['price']).to be_within(0.0005).of(47.7384)
 	end

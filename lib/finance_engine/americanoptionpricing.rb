@@ -11,9 +11,9 @@ module FinanceEngine
 		end
 
 		def build_american_options(years_to_expiration, periods_in_year)
-			up_factor(periods_in_year**-1)
-			down_factor(periods_in_year**-1)
-			create_tree_for_years(years_to_expiration, periods_in_year**-1)
+			up_fac(periods_in_year**-1)
+			down_fac(periods_in_year**-1)
+			create_tree_for_years(years_to_expiration, periods_in_year)
 		end
 
 		def create_tree_for_years(years_to_expiration, periods_in_year, node='original_', price=@price)
@@ -22,8 +22,8 @@ module FinanceEngine
 				@tree[node]['call'] = call_value(price)
 				@tree[node]['put'] = put_value(price)
 			elsif years_to_expiration.round(3) > 0
-				price_up = price * up_factor(1.0/periods_in_year)
-				price_down = price * down_factor(1.0/periods_in_year)
+				price_up = price * @up_factor
+				price_down = price * @down_factor
 				create_tree_for_years((years_to_expiration - 1.0/periods_in_year), periods_in_year, node+'u', price_up )
 				create_tree_for_years((years_to_expiration - 1.0/periods_in_year), periods_in_year, node+'d', price_down)
 			end
