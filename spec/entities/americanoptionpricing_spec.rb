@@ -28,4 +28,12 @@ describe FinanceEngine::American_Options do
 		expect(ans.round(4)).to be_within(0.0005).of(0.5574)
 	end
 
+	it 'Be able to create tree.' do
+		first = FinanceEngine::American_Options.new(32,0.2,0.10,90)
+		first.create_tree_for_years(2, 1)
+		puts first.tree
+		# expect(first.price).to eq(32)
+		# ans = first.probability_increase_price(1.0/12)
+		# expect(ans.round(4)).to be_within(0.0005).of(0.5574)
+	end
 end

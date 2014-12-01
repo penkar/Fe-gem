@@ -10,11 +10,15 @@ module FinanceEngine
 			@tree = {}
 		end
 
-		def create_tree_for_years(price=@price, years, periods_in_year, node='original_')
-			if years.round(4) == 0
-
-			elsif year.round(4) > 0
-				
+		def create_tree_for_years(years, periods_in_year, node='original_', price=@price)
+			@tree[node]=price
+			if years.round(3) == 0
+				return
+			elsif years.round(3) > 0
+				price_up = price * up_factor(1.0/periods_in_year)
+				price_down = price * down_factor(1.0/periods_in_year)
+				create_tree_for_years((years - 1.0/periods_in_year), periods_in_year, node+'u', price_up, )
+				create_tree_for_years((years - 1.0/periods_in_year), periods_in_year, node+'d', price_down)
 			end
 		end
 
