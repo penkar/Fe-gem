@@ -17,16 +17,18 @@ describe FinanceEngine::American_Options do
 		expect(first.down_factor.round(4)).to be_within(0.0005).of(0.9439)
 	end	
 
-		it 'It should be able calculate the correct probability of an increase of price for a 1 month period.' do
+	it 'It should be able calculate the correct probability of an increase of price for a 1 month period.' do
 		first = FinanceEngine::American_Options.new(32,0.2,0.10,90)
 		expect(first.price).to eq(32)
-		ans = first.probability_increase_price(1.0/12)
-		expect(ans.round(4)).to be_within(0.0005).of(0.5574)
+		first.up_fac(1.0/12)
+		first.down_fac(1.0/12)
+		first.probability_increase_price(1.0/12)
+		expect(first.probability.round(4)).to be_within(0.0005).of(0.5576)
 	end
 
 	it 'Be able to create tree.' do
 		first = FinanceEngine::American_Options.new(32,0.2,0.10,35)
-		first.create_tree_for_years(1)
+		first.build_american_options(2,1)
 		puts first
 		expect(first.tree['original_dd']['price']).to be_within(0.0005).of(21.450)
 		expect(first.tree['original_uu']['price']).to be_within(0.0005).of(47.7384)

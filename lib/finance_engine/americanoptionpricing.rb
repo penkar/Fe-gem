@@ -1,7 +1,7 @@
 require 'distribution'
 module FinanceEngine
 	class American_Options
-		attr_accessor :price, :vol, :rf, :strike, :time, :tree, :up_factor, :down_factor
+		attr_accessor :price, :vol, :rf, :strike, :time, :tree, :up_factor, :down_factor, :probability
 		def initialize(price, volatility, risk_free_rate, strike)
 			@price = price
 			@vol = volatility
@@ -10,9 +10,10 @@ module FinanceEngine
 			@tree = {}
 		end
 
-		def build_american_options(periods_in_year)
-			up_factor(1.0/periods_in_year)
-			down_factor(1.0/periods_in_year)
+		def build_american_options(years_to_expiration, periods_in_year)
+			up_factor(periods_in_year**-1)
+			down_factor(periods_in_year**-1)
+			create_tree_for_years(years_to_expiration, periods_in_year**-1)
 		end
 
 		def create_tree_for_years(years_to_expiration, periods_in_year, node='original_', price=@price)
@@ -45,7 +46,7 @@ module FinanceEngine
 		end	
 		
 		def probability_increase_price(time)
-			0.5 * (1+(@rf / @vol - @vol/2) *(time)**(0.5))
+			@probability = (Math::E**(time*@rf)-@down_factor)/(@up_factor - @down_factor)
 		end
 	end
 end
