@@ -13,20 +13,33 @@ module FinanceEngine
 		def build_american_options(years_to_expiration, periods_in_year)
 			up_fac(periods_in_year**-1)
 			down_fac(periods_in_year**-1)
-			create_tree_for_years(years_to_expiration, periods_in_year)
+			probability_increase_price(periods_in_year**-1)
+			create_tree_for_years(years_to_expiration, periods_in_year**-1)
 		end
 
 		def create_tree_for_years(years_to_expiration, periods_in_year, node='original_', price=@price)
-			@tree[node]={'price'=>price.round(4), 'call'=> call_value(price), 'put'=>put_value(price)}
+			@tree[node]={'price'=>price.round(4)}
 			if years_to_expiration.round(3) == 0
 				@tree[node]['call'] = call_value(price)
 				@tree[node]['put'] = put_value(price)
 			elsif years_to_expiration.round(3) > 0
-				price_up = price * @up_factor
-				price_down = price * @down_factor
-				create_tree_for_years((years_to_expiration - 1.0/periods_in_year), periods_in_year, node+'u', price_up )
-				create_tree_for_years((years_to_expiration - 1.0/periods_in_year), periods_in_year, node+'d', price_down)
+				create_tree_for_years((years_to_expiration - periods_in_year), periods_in_year, node+'u', price * @up_factor )
+				create_tree_for_years((years_to_expiration - periods_in_year), periods_in_year, node+'d', price * @down_factor)
+				get_put_value(node, periods_in_year)
+				get_call_value(node, periods_in_year)
 			end
+		end
+
+		def get_put_value(node, periods_in_year)
+			up = @tree[node+'u']['put']
+			down = @tree[node+'d']['put']
+			@tree[node]['put'] = (Math::E**(-@rf* periods_in_year)*(@probability * up)+Math::E**(-@rf* periods_in_year)*((1-@probability) * down)).round(4)
+		end
+
+		def get_call_value(node, periods_in_year)
+			up = @tree[node+'u']['call']
+			down = @tree[node+'d']['call']
+			@tree[node]['call'] = (Math::E**(-@rf* periods_in_year)*(@probability * up)+Math::E**(-@rf* periods_in_year)*((1-@probability) * down)).round(4)
 		end
 
 		def put_value(price)

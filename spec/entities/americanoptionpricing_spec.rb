@@ -29,8 +29,14 @@ describe FinanceEngine::American_Options do
 	it 'Be able to create tree.' do
 		first = FinanceEngine::American_Options.new(32,0.2,0.10,35)
 		first.build_american_options(2, 1)
-		p first
 		expect(first.tree['original_dd']['price']).to be_within(0.0005).of(21.450)
 		expect(first.tree['original_uu']['price']).to be_within(0.0005).of(47.7384)
+	end
+
+	it 'Get american put and call option values.' do
+		first = FinanceEngine::American_Options.new(100,0.3,0.05,100)
+		first.build_american_options(1, 4)
+		expect(first.tree['original_']['put']).to be_within(0.0005).of(13.5240)
+		expect(first.tree['original_']['call']).to be_within(0.0005).of(8.6469)
 	end
 end
