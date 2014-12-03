@@ -37,6 +37,6 @@ describe FinanceEngine::American_Options do
 		first = FinanceEngine::American_Options.new(100,0.3,0.05,100)
 		first.build_american_options(1, 4)
 		expect(first.tree['original_']['put']).to be_within(0.0005).of(13.5240)
-		expect(first.tree['original_']['call']).to be_within(0.0005).of(8.6469)
+		expect(first.tree['original_']['call']).to be_within(0.0005).of(9.535)
 	end
 end

@@ -25,21 +25,21 @@ module FinanceEngine
 			elsif years_to_expiration.round(3) > 0
 				create_tree_for_years((years_to_expiration - periods_in_year), periods_in_year, node+'u', price * @up_factor )
 				create_tree_for_years((years_to_expiration - periods_in_year), periods_in_year, node+'d', price * @down_factor)
-				get_put_value(node, periods_in_year)
-				get_call_value(node, periods_in_year)
+				get_put_value(price, node, periods_in_year)
+				get_call_value(price, node, periods_in_year)
 			end
 		end
 
-		def get_put_value(node, periods_in_year)
+		def get_put_value(price, node, periods_in_year)
 			up = @tree[node+'u']['put']
 			down = @tree[node+'d']['put']
-			@tree[node]['put'] = (Math::E**(-@rf* periods_in_year)*(@probability * up)+Math::E**(-@rf* periods_in_year)*((1-@probability) * down)).round(4)
+			@tree[node]['put'] = [put_value(price), (Math::E**(-@rf* periods_in_year)*(@probability * up)+Math::E**(-@rf* periods_in_year)*((1-@probability) * down)).round(4)].max
 		end
 
-		def get_call_value(node, periods_in_year)
+		def get_call_value(price, node, periods_in_year)
 			up = @tree[node+'u']['call']
 			down = @tree[node+'d']['call']
-			@tree[node]['call'] = (Math::E**(-@rf* periods_in_year)*(@probability * up)+Math::E**(-@rf* periods_in_year)*((1-@probability) * down)).round(4)
+			@tree[node]['call'] = [call_value(price), (Math::E**(-@rf* periods_in_year)*(@probability * up)+Math::E**(-@rf* periods_in_year)*((1-@probability) * down)).round(4)].max
 		end
 
 		def put_value(price)
